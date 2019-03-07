@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translation>
+    <languageList>
+        <language description="English" lang="en_US" />
+        <language description="German" lang="de_DE" />
+    </languageList>
+    <key value="facsviewer.prefpage.config.projectname">
+        <comment>Text for controls and table column for the project to configure.</comment>
+        <val lang="en_US">Project</val>
+        <val lang="de_DE">Projekt</val>
+    </key>
+    <key value="facsviewer.prefpage.config.localimagedir">
+        <comment>Text for controls and table column for image directory to browse/use.</comment>
+        <val lang="en_US">Local Image Directory</val>
+        <val lang="de_DE">Lokales Bildverzeichnis</val>
+    </key>
+    <key value="facsviewer.prefpage.config.imageserverurl">
+        <comment>Text for controls and table column for image server url.</comment>
+        <val lang="en_US">Image Server Url</val>
+        <val lang="de_DE">Image Server Url</val>
+    </key>
+    <key value="facsviewer.prefpage.config.imagereference.element">
+        <comment>Text for controls and table column for element containing image reference.</comment>
+        <val lang="en_US">Element Name</val>
+        <val lang="de_DE">Element Name</val>
+    </key>
+    <key value="facsviewer.prefpage.config.imagereference.attribute">
+        <comment>Text for controls and table column for attribute containing the image reference attribute.</comment>
+        <val lang="en_US">Element Name</val>
+        <val lang="de_DE">Element Name</val>
+    </key>
+    <key value="facsviewer.prefpage.dialogs.addproject.title">
+        <comment>Title for the dialog to add a new project settings.</comment>
+        <val lang="en_US">Add new Project Settings</val>
+        <val lang="de_DE">Neues Projekteinstellungen hinzufügen</val>
+    </key>
+    <key value="facsviewer.prefpage.dialogs.updateproject.title">
+        <comment>Title for the dialog to to update existing project settings.</comment>
+        <val lang="en_US">Update Project Settings</val>
+        <val lang="de_DE">Neue Projekteinstellungen hinzufügen</val>
+    </key>
+     <key value="facsviewer.prefpage.dialogs.removeproject.title">
+        <comment>Title for the dialog to to remove existing project settings.</comment>
+        <val lang="en_US">Remove Project Settings</val>
+        <val lang="de_DE">Projekteinstellungen entfernen</val>
+    </key>
+    <key value="facsviewer.prefpage.dialogs.removeproject.question">
+        <comment>Question before confirming project settings removal.</comment>
+        <val lang="en_US">Are you sure you want to remove the Settings for this Project?</val>
+        <val lang="de_DE">Wollen Sie die Projekteinstellungen wirklich entfernen?</val>
+    </key>
+</translation>

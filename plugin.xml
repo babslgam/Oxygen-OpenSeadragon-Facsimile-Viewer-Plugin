@@ -1,0 +1,18 @@
+<!DOCTYPE plugin PUBLIC "-//Oxygen Plugin" "../plugin.dtd">
+<plugin
+ id="at.ac.oeaw.acdh.facsviewer"
+ name="ACDH Facs Viewer"
+ description="Load facsimile of current page"
+ version="1.0"
+ vendor="Syncro Soft"
+ class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerPlugin"
+ classLoaderType="preferReferencedResources">
+    <runtime>
+    <library name="../classes"/>
+	<library name="target/classes"/>
+    </runtime>
+	 <extension type="WorkspaceAccess" 
+   class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerExtension"/>
+    <extension type="OptionPage" class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerExtension"/>
+    <view id="ACDH Facs Viewer" initialSide="EAST" initialRow="0"/>
+</plugin>
