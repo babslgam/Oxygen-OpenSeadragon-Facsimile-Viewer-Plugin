@@ -1,5 +1,18 @@
 package at.ac.oeaw.acdh.facsviewer.preferencepage.configtabledata;
 
+import java.util.ArrayList;
+
+import javax.swing.text.BadLocationException;
+
+import org.w3c.dom.Element;
+
+import at.ac.oeaw.acdh.facsviewer.utils.FacsIndexElement;
+import ro.sync.exml.workspace.api.editor.page.WSEditorPage;
+import ro.sync.exml.workspace.api.editor.page.text.WSTextEditorPage;
+import ro.sync.exml.workspace.api.editor.page.text.xml.WSXMLTextEditorPage;
+import ro.sync.exml.workspace.api.editor.page.text.xml.WSXMLTextNodeRange;
+import ro.sync.exml.workspace.api.editor.page.text.xml.XPathException;
+
 public class FacsViewerProjectConfig {
 
 	String projectName;
@@ -8,7 +21,7 @@ public class FacsViewerProjectConfig {
 	String facsElementName;
 	String facsAttributeName;
 	
-	public FacsViewerProjectConfig(String[] optionsArray) {
+	public FacsViewerProjectConfig(final String... optionsArray) {
 		this.projectName = optionsArray[0];
 		this.localImagePath = optionsArray[1];
 		this.imageServerUrl = optionsArray[2];
@@ -58,6 +71,25 @@ public class FacsViewerProjectConfig {
 
 	public void setFacsAttributeName(String facsAttributeName) {
 		this.facsAttributeName = facsAttributeName;
+	}
+	
+	public ArrayList<FacsIndexElement> createFacsIndex(WSEditorPage editorPage) throws XPathException, BadLocationException {
+		
+		ArrayList<FacsIndexElement> facsIndexModel = new ArrayList<FacsIndexElement>();
+		
+		if (editorPage instanceof WSXMLTextEditorPage) {
+			String facsXPath = "//"+ this.getFacsElementName();
+			Object[] facsElements = ((WSXMLTextEditorPage) editorPage).evaluateXPath(facsXPath);
+			WSXMLTextNodeRange[] facsElementsRanges = ((WSXMLTextEditorPage) editorPage).findElementsByXPath(facsXPath);
+			for (int i = 0;i < facsElements.length;i++)  {
+				FacsIndexElement facsIndexElement = new FacsIndexElement();
+				facsIndexElement.setImageName(((Element) facsElements[i]).getAttribute(this.getFacsAttributeName()));
+				int facsIndexElementOffsetStart = ((WSTextEditorPage) editorPage).getOffsetOfLineStart(facsElementsRanges[i].getStartLine()) + facsElementsRanges[i].getStartColumn() - 1;
+				facsIndexElement.setOffsetStart(facsIndexElementOffsetStart);
+				facsIndexModel.add(facsIndexElement);
+			}
+		 }
+		return facsIndexModel;
 	}
 	
 

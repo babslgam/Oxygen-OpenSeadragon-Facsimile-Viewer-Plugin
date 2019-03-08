@@ -107,8 +107,6 @@ public class FacsViewerBrowserPanel extends JFXPanel {
             @Override
             public void run() {
             
-            	
-            	
             	window.setMember("fcsidx", fim);
 	            engine.executeScript("facsViewerGUIPluginInstance.setFacsIndex(fcsidx)");
             	engine.executeScript("facsViewerGUIPluginInstance.generateDropDown()");

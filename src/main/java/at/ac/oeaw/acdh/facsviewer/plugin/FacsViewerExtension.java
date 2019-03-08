@@ -112,7 +112,6 @@ public class FacsViewerExtension extends OptionPagePluginExtension implements Wo
 							@Override
 							public void propertyChange(PropertyChangeEvent evt) {
 							String currentlySelectedProject = PluginWorkspaceProvider.getPluginWorkspace().getUtilAccess().expandEditorVariables("${pn}", null);
-								System.out.print("pr after change: " + currentlySelectedProject + System.getProperty("line.separator"));
 								FacsViewerBrowserPanel.updateCurrentProject(currentlySelectedProject);
 			
 							}
@@ -191,21 +190,9 @@ public void generateFacsIndex(WSEditorPage editorPage) throws XPathException, Ba
 			
 	
 	} else if (editorPage instanceof WSXMLTextEditorPage) {
-		String facsElementName = FacsViewerBrowserPanel.getCurrentlySelectedProjectConfig().getFacsElementName();
-		String facsAttributeName = FacsViewerBrowserPanel.getCurrentlySelectedProjectConfig().getFacsAttributeName();
-		String facsXPath = "//"+ facsElementName;
-		//currentProjectConfig
 		
-		Object[] facsElements = ((WSXMLTextEditorPage) editorPage).evaluateXPath(facsXPath);
-		WSXMLTextNodeRange[] facsElementsRanges = ((WSXMLTextEditorPage) editorPage).findElementsByXPath(facsXPath);
-		ArrayList<FacsIndexElement> facsIndexModel = new ArrayList<FacsIndexElement>();
-		for (int i = 0;i < facsElements.length;i++)  {
-			FacsIndexElement facsIndexElement = new FacsIndexElement();
-			facsIndexElement.setImageName(((Element) facsElements[i]).getAttribute(facsAttributeName));
-			int facsIndexElementOffsetStart = ((WSTextEditorPage) editorPage).getOffsetOfLineStart(facsElementsRanges[i].getStartLine()) + facsElementsRanges[i].getStartColumn() - 1;
-			facsIndexElement.setOffsetStart(facsIndexElementOffsetStart);
-			facsIndexModel.add(facsIndexElement);
-		}
+		ArrayList<FacsIndexElement> facsIndexModel = FacsViewerBrowserPanel.getCurrentlySelectedProjectConfig().createFacsIndex(editorPage);
+		
 		FacsViewerBrowserPanel.setFacsViewerIndex(facsIndexModel);
 	}
 }

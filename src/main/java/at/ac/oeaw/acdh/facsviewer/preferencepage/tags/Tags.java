@@ -8,14 +8,7 @@ package at.ac.oeaw.acdh.facsviewer.preferencepage.tags;
 	 * adapted by Barbara Krautgartner
 	 *
 	 */
-	public class Tags {
-
-		/**
-		 * Private constructor.
-		 */
-		private Tags() {
-			throw new IllegalStateException("Utility class");
-		}
+	public final class Tags {
 
 		public static final String PROJECT = "facsviewer.prefpage.config.projectname";
 
@@ -35,4 +28,11 @@ package at.ac.oeaw.acdh.facsviewer.preferencepage.tags;
 
 		public static final String REMOVE_PROJECT_QUESTION = "facsviewer.prefpage.dialogs.removeproject.question";
 
+		
+		/**
+		 * Private constructor.
+		 */
+		private Tags() {
+			throw new IllegalStateException("Utility class");
+		}
 	}

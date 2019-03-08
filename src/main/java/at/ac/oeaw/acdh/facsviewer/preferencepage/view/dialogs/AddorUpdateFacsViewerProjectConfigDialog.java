@@ -36,11 +36,11 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 			.getPluginWorkspace();
 	PluginResourceBundle messages = pluginWorkspace.getResourceBundle();
 	
-	private JTextField localImgDirTextField = new JTextField();
-	private JTextField projectNameTextField = new JTextField();
-	private JTextField imageServerUrlTextField = new JTextField();
-	private JTextField facsElementTextField = new JTextField();
-	private JTextField facsAttributeTextField = new JTextField();
+	private final JTextField localImgDirTextField = new JTextField();
+	private final JTextField projectNameTextField = new JTextField();
+	private final JTextField imageServerUrlTextField = new JTextField();
+	private final JTextField facsElementTextField = new JTextField();
+	private final JTextField facsAttributeTextField = new JTextField();
 	JLabel projectNameTextFieldLabel = new JLabel(messages.getMessage(Tags.PROJECT));
 	JLabel localImageDirecoryLabel = new JLabel(messages.getMessage(Tags.LOCAL_IMG_DIR));
 	JLabel imageServerUrlTextFieldLabel = new JLabel(messages.getMessage(Tags.IMAGE_SERVER_URL));
@@ -49,11 +49,11 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 	JLabel facsAttributeTextFieldLabel = new JLabel(messages.getMessage(Tags.IMAGE_REF_ATTR));
 	private FacsViewerProjectConfig facsViewerProjectConfig = new FacsViewerProjectConfig();
 	
-	public AddorUpdateFacsViewerProjectConfigDialog(String title) {
+	public AddorUpdateFacsViewerProjectConfigDialog(final String title) {
 		
 		super((JFrame) ((StandalonePluginWorkspace) PluginWorkspaceProvider.getPluginWorkspace()).getParentFrame(), title, true);
 		
-		AbstractAction chooseLocalImageDir = new AbstractAction() {
+		final AbstractAction chooseLocalImageDir = new AbstractAction() {
 
 			/**
 			 * 
@@ -61,22 +61,22 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 			private static final long serialVersionUID = 8430055323098351207L;
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				File chosenDir = PluginWorkspaceProvider.getPluginWorkspace().chooseDirectory();
+			public void actionPerformed(final ActionEvent e) {
+				final File chosenDir = PluginWorkspaceProvider.getPluginWorkspace().chooseDirectory();
             	localImgDirTextField.setText(chosenDir.getAbsolutePath());	
 			}
 		};
 		
-		ToolbarButton browseLocalImageDirButton = new ToolbarButton(chooseLocalImageDir,true);
+		final ToolbarButton browseLocalImageDirButton = new ToolbarButton(chooseLocalImageDir,true);
 		browseLocalImageDirButton.setIcon(new ImageIcon(AddorUpdateFacsViewerProjectConfigDialog.class.getResource("/images/Open16_dark@2x.png")));
 	
-		GridBagLayout gridBagLayout = new GridBagLayout();
+		final GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 1.0};
 		getContentPane().setLayout(gridBagLayout);
 		
 		/* gridbagcontraints for each gui-element because of using WindowBuilder 
 		https://www.eclipse.org/windowbuilder */  
-		GridBagConstraints gbc_projectNameTextFieldLabel = new GridBagConstraints();
+		final GridBagConstraints gbc_projectNameTextFieldLabel = new GridBagConstraints();
 		gbc_projectNameTextFieldLabel.anchor = GridBagConstraints.EAST;
 		gbc_projectNameTextFieldLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_projectNameTextFieldLabel.gridx = 0;
@@ -86,14 +86,14 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 		localImageDirecoryLabel.setVerticalAlignment(SwingConstants.TOP);
 		projectNameTextField.setColumns(10);
 		
-		GridBagConstraints gbc_projectNameTextField = new GridBagConstraints();
+		final GridBagConstraints gbc_projectNameTextField = new GridBagConstraints();
 		gbc_projectNameTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_projectNameTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_projectNameTextField.gridx = 1;
 		gbc_projectNameTextField.gridy = 0;
 		getContentPane().add(projectNameTextField, gbc_projectNameTextField);
 		
-		GridBagConstraints gbc_localImgDirTextFieldLabel = new GridBagConstraints();
+		final GridBagConstraints gbc_localImgDirTextFieldLabel = new GridBagConstraints();
 		gbc_localImgDirTextFieldLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_localImgDirTextFieldLabel.anchor = GridBagConstraints.EAST;
 		gbc_localImgDirTextFieldLabel.gridx = 0;
@@ -102,20 +102,20 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 		localImgDirTextField.setHorizontalAlignment(SwingConstants.LEFT);
 		localImgDirTextField.setColumns(10);
 		
-		GridBagConstraints gbc_localImgDirTextField = new GridBagConstraints();
+		final GridBagConstraints gbc_localImgDirTextField = new GridBagConstraints();
 		gbc_localImgDirTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_localImgDirTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_localImgDirTextField.gridx = 1;
 		gbc_localImgDirTextField.gridy = 1;
 		getContentPane().add(localImgDirTextField, gbc_localImgDirTextField);
-		GridBagConstraints gbc_browseLocalImageDirButton = new GridBagConstraints();
+		final GridBagConstraints gbc_browseLocalImageDirButton = new GridBagConstraints();
 		gbc_browseLocalImageDirButton.insets = new Insets(0, 0, 5, 0);
 		gbc_browseLocalImageDirButton.gridx = 2;
 		gbc_browseLocalImageDirButton.gridy = 1;
 		
 		getContentPane().add(browseLocalImageDirButton, gbc_browseLocalImageDirButton);
 		
-		GridBagConstraints gbc_imageServerUrlTextFieldLabel = new GridBagConstraints();
+		final GridBagConstraints gbc_imageServerUrlTextFieldLabel = new GridBagConstraints();
 		gbc_imageServerUrlTextFieldLabel.anchor = GridBagConstraints.EAST;
 		gbc_imageServerUrlTextFieldLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_imageServerUrlTextFieldLabel.gridx = 0;
@@ -124,14 +124,14 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 		
 		imageServerUrlTextField.setColumns(10);
 		
-		GridBagConstraints gbc_imageServerUrlTextField = new GridBagConstraints();
+		final GridBagConstraints gbc_imageServerUrlTextField = new GridBagConstraints();
 		gbc_imageServerUrlTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_imageServerUrlTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_imageServerUrlTextField.gridx = 1;
 		gbc_imageServerUrlTextField.gridy = 2;
 		getContentPane().add(imageServerUrlTextField, gbc_imageServerUrlTextField);
 		
-		GridBagConstraints gbc_facsimileElementTextFieldLabel = new GridBagConstraints();
+		final GridBagConstraints gbc_facsimileElementTextFieldLabel = new GridBagConstraints();
 		gbc_facsimileElementTextFieldLabel.anchor = GridBagConstraints.EAST;
 		gbc_facsimileElementTextFieldLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_facsimileElementTextFieldLabel.gridx = 0;
@@ -140,14 +140,14 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 		
 		facsElementTextField.setColumns(10);
 		
-		GridBagConstraints gbc_facsElementTextField = new GridBagConstraints();
+		final GridBagConstraints gbc_facsElementTextField = new GridBagConstraints();
 		gbc_facsElementTextField.insets = new Insets(0, 0, 5, 5);
 		gbc_facsElementTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_facsElementTextField.gridx = 1;
 		gbc_facsElementTextField.gridy = 3;
 		getContentPane().add(facsElementTextField, gbc_facsElementTextField);
 		
-		GridBagConstraints gbc_facsimileAttributeTextFieldLabel = new GridBagConstraints();
+		final GridBagConstraints gbc_facsimileAttributeTextFieldLabel = new GridBagConstraints();
 		gbc_facsimileAttributeTextFieldLabel.anchor = GridBagConstraints.EAST;
 		gbc_facsimileAttributeTextFieldLabel.insets = new Insets(0, 0, 0, 5);
 		gbc_facsimileAttributeTextFieldLabel.gridx = 0;
@@ -156,7 +156,7 @@ public class AddorUpdateFacsViewerProjectConfigDialog extends OKCancelDialog {
 		
 		facsAttributeTextField.setColumns(10);
 		
-		GridBagConstraints gbc_facsimileAttributeTextField = new GridBagConstraints();
+		final GridBagConstraints gbc_facsimileAttributeTextField = new GridBagConstraints();
 		gbc_facsimileAttributeTextField.insets = new Insets(0, 0, 0, 5);
 		gbc_facsimileAttributeTextField.fill = GridBagConstraints.HORIZONTAL;
 		gbc_facsimileAttributeTextField.gridx = 1;

@@ -12,7 +12,7 @@ public class FacsViewerSettingsTableModel extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 5916553031965556457L;
-	private String[] colNames = {"Project", "local Image Directory", "Image Server Url", "Facs Element", "Facs Attribute"};
+	private final String[] colNames = {"Project", "local Image Directory", "Image Server Url", "Facs Element", "Facs Attribute"};
 	private List<FacsViewerProjectConfig> rowData = new ArrayList<FacsViewerProjectConfig>(); 
 	 
 	
@@ -48,6 +48,7 @@ public class FacsViewerSettingsTableModel extends AbstractTableModel {
 			case 2: return settingsObj.getImageServerUrl();
 			case 3: return settingsObj.getFacsElementName();
 			case 4: return settingsObj.getFacsAttributeName();
+			default:
 		}
 		return null;
 	}

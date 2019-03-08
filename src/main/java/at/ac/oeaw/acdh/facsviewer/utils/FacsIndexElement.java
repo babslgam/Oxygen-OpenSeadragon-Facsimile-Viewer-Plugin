@@ -8,13 +8,13 @@ public class FacsIndexElement {
 	public String getImageName() {
 		return imagename;
 	}
-	public void setImageName(String imagename) {
+	public void setImageName(final String imagename) {
 		this.imagename = imagename;
 	}
 	public int getOffsetStart() {
 		return offsetstart;
 	}
-	public void setOffsetStart(int offsetstart) {
+	public void setOffsetStart(final int offsetstart) {
 		this.offsetstart = offsetstart;
 	}
 	
