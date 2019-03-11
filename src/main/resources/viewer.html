@@ -1,41 +1,109 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<script type="text/javascript" src="vendor/openseadragon/openseadragon.min.js"></script>
-		<script type="text/javascript" src="vendor/jquery/jquery-3.3.1.slim.min.js"></script>
-		<script type="text/javascript" src="js/utils.js"></script>
-		<link type="text/css" rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css"></link>
-		<link type="text/css" rel="stylesheet" href="css/style.css"></link>
 
-	</head>
-	<body>
-		<div class="container d-flex flex-column h-100">
-			<div class="row">
-				<div class="col">
-					<div id="debug">
-						<p>Debuginfo</p>
-						<p id="debuginfo"></p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div id="info">
-						<p id="nosettings">No settings found.</p>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-				<select class="form-control" id="facsSelector"></select>
-				</div>
-			</div>
-			<div class="row flex-fill justify-content-start">
-				<div class="col d-flex flex-fill">
-					<div class="d-flex flex-fill" id="openseadragonContainer"> </div>
-				</div>		
-			</div>		
-		</div>
+<head> 
+    <script type="text/javascript" src="vendor/jquery/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="vendor/openseadragon/openseadragon.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <link type="text/css" rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    </link>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    </link>
+
+</head>
+
+<body>
+        <ul class="nav nav-tabs" id="facsviewertabs">
+            <li class="nav-item active" id="viewer-tab">
+                Viewer
+            </li>
+            <li class="nav-item" id="profile-tab">
+                Profile
+            </li>
+            <li class="nav-item" id="info-tab">
+                Info
+            </li>
+        </ul>
+
+       
+            <div id="viewer" class="tab-content h-100">
+            <div class="container-fluid d-flex h-100 flex-column">
+                <div class="row">
+                    <div class="col">
+                        <div id="debug">
+                            <p>Debuginfo</p>
+                            <p id="debuginfo"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div id="info">
+                            <p id="nosettings">No settings found.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <select class="form-control" id="facsSelector"></select>
+                    </div>
+                </div>
+                <div class="row flex-grow-1">
+                        <div id="openseadragonContainer" class=" col flex-grow-1"> </div>
+                    
+                </div>
+                </div>
+            </div>
+            <div id="profile">
+                <div class="row">
+                    <div class="col">
+                        <div id="projectsettings">
+                            <form id="profileform">
+                                <div class="form-group row">
+                                    <label for="projectname" class="col-sm-2 col-form-label">Project</label>
+                                    <div class="col-sm-10">
+                                        <input type="text"  class="form-control" name="projectname" id="projectname">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="localimgpath" class="col-sm-2 col-form-label">Local Image Folder</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="localimgpath" id="localimgpath">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="imgserver" class="col-sm-2 col-form-label">Image Server</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="imgserver" id="imgserver">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="facselement" class="col-sm-2 col-form-label">Facs Element</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="facselement" id="facselement">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="facsattribute" class="col-sm-2 col-form-label">Facs Attribute</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="facsattribute" id="facsattribute">
+                                    </div>
+                                </div>
+                                </form>
+                                <button id="saveSettingsButton" class="btn btn-outline-dark">Save Settings</button>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="info">
+                <div class="row">
+                    <div class="col">
+
+                    </div>
+                </div>
+            </div>
+      
 </body>
 
 </html>

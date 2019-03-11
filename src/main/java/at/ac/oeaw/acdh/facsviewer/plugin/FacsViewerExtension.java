@@ -6,7 +6,6 @@ import java.beans.PropertyChangeListener;
 import java.net.URL;
 import java.util.ArrayList;
 
-import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
@@ -20,11 +19,9 @@ import javax.swing.event.CaretListener;
 import javafx.application.Platform;
 
 import at.ac.oeaw.acdh.facsviewer.plugin.view.FacsViewerBrowserPanel;
-import at.ac.oeaw.acdh.facsviewer.preferencepage.view.OptionPage;
 import at.ac.oeaw.acdh.facsviewer.utils.FacsIndexElement;
 import ro.sync.ecss.extensions.api.AuthorCaretEvent;
 import ro.sync.ecss.extensions.api.AuthorCaretListener;
-import ro.sync.exml.plugin.option.OptionPagePluginExtension;
 
 import ro.sync.exml.plugin.workspace.WorkspaceAccessPluginExtension;
 
@@ -48,44 +45,14 @@ import ro.sync.exml.workspace.api.editor.page.text.xml.WSXMLTextEditorPage;
 import ro.sync.exml.workspace.api.editor.page.text.xml.WSXMLTextNodeRange;
 import ro.sync.exml.workspace.api.editor.page.text.xml.XPathException;
 
-public class FacsViewerExtension extends OptionPagePluginExtension implements WorkspaceAccessPluginExtension {
+public class FacsViewerExtension implements WorkspaceAccessPluginExtension {
 
-	private OptionPage facsViewerOptionPage = null;
-
-	@Override
-	public void apply(PluginWorkspace arg0) {
-		if (facsViewerOptionPage != null) {
-			facsViewerOptionPage.savePageState();
-		}
-	}
-
-	@Override
-	public String getTitle() {
-		return "ACDH Facs Viewer";
-	}
-
-	@Override
-	public JComponent init(PluginWorkspace arg0) {
-		facsViewerOptionPage = new OptionPage();
-		return facsViewerOptionPage;
-	}
-
-	@Override
-	public void restoreDefaults() {
-		if (facsViewerOptionPage != null) {
-			facsViewerOptionPage.restoreDefault();
-		}
-
-	}
-
-	public void applicationStarted(StandalonePluginWorkspace pluginWorkspaceAccess) {
+public void applicationStarted(StandalonePluginWorkspace pluginWorkspaceAccess) {
 
 		WSOptionsStorage optionsStorage = pluginWorkspaceAccess.getOptionsStorage();
 
 		String[] projectsSettings = optionsStorage.getStringArrayOption("facsviewer.projects.settings", null);
 
-		
-		
 		pluginWorkspaceAccess.addViewComponentCustomizer(new ViewComponentCustomizer() {
 			/**
 			 * @see ro.sync.exml.workspace.api.standalone.ViewComponentCustomizer#customizeView(ro.sync.exml.workspace.api.standalone.ViewInfo)
@@ -112,7 +79,6 @@ public class FacsViewerExtension extends OptionPagePluginExtension implements Wo
 							@Override
 							public void propertyChange(PropertyChangeEvent evt) {
 							String currentlySelectedProject = PluginWorkspaceProvider.getPluginWorkspace().getUtilAccess().expandEditorVariables("${pn}", null);
-								System.out.print("pr after change: " + currentlySelectedProject + System.getProperty("line.separator"));
 								FacsViewerBrowserPanel.updateCurrentProject(currentlySelectedProject);
 			
 							}

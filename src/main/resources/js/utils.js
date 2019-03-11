@@ -1,9 +1,40 @@
 $(document).ready(function(){
 	
+
+	$("#facsviewertabs").on('click','.nav-item',function() {
+		$(this).addClass("active");
+		var tabname = $(this)[0].id.split('-')[0];
+		$("#"+ tabname).show();
+		$(this).siblings().each(function(index,item){
+			$(this).removeClass("active");
+			var tabname = $(item)[0].id.split('-')[0];
+			$("#"+ tabname).hide();
+		});
+	});
 	
 	$(document).on('change',"#facsSelector", function() {
 		facsViewerGUIPluginInstance.loadViewer($(this).val());
 	});
+	
+	$("#localimgpath").focus(function(){
+		var imagefolderpath = currentProjectConfig.browseLocalImagePath();
+		if (imagefolderpath === "canceled") {
+			$(this).blur();
+		} else {
+			$(this).val(imagefolderpath);
+			$(this).blur();
+		}
+	})
+	
+	$("#saveSettingsButton").click(function(){
+		
+		currentProjectConfig.setProjectName($("#projectname").val());
+		currentProjectConfig.setLocalImagePath($("#localimgpath").val());
+		currentProjectConfig.setImageServerUrl($("#imgserver").val());
+		currentProjectConfig.setFacsElementName($("#facselement").val());
+		currentProjectConfig.setFacsAttributeName($("#facsattribute").val());
+		currentProjectConfig.storeConfig(projectsConfigs);
+	});	
 });
 var facsViewerGUIPlugin = function (currentProjectConfig) {
 
@@ -35,9 +66,15 @@ facsViewerGUIPlugin.prototype.changePage = function() {
 }
 
 facsViewerGUIPlugin.prototype.selectProject = function (projectConfig) {
+	$("#profileform")[0].reset();
 	if (projectConfig != null) {
 
-
+		$("#projectname").val(projectConfig.getProjectName());
+		$("#localimgpath").val(projectConfig.getLocalImagePath());
+		$("#imgserver").val(projectConfig.getImageServerUrl());
+		$("#facselement").val(projectConfig.getFacsElementName());
+		$("#facsattribute").val(projectConfig.getFacsAttributeName());
+		
 	//	$("#debuginfo").html(projectConfig.getProjectName());
 		$("#nosettings").hide();
 	} else {
@@ -45,6 +82,7 @@ facsViewerGUIPlugin.prototype.selectProject = function (projectConfig) {
 		//	$("#debuginfo").html("dasds");
 	}
 }
+
 
 facsViewerGUIPlugin.prototype.generateDropDown = function () {
 	var fcsIndex = this.getFacsIndex();

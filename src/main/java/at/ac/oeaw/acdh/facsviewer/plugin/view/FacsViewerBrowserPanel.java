@@ -1,24 +1,21 @@
 package at.ac.oeaw.acdh.facsviewer.plugin.view;
  
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import at.ac.oeaw.acdh.facsviewer.utils.FacsIndexElement;
+import at.ac.oeaw.acdh.facsviewer.utils.FacsViewerProjectConfig;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker;
+import javafx.concurrent.Worker.State;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.concurrent.Worker.State;
-
-import javafx.scene.layout.StackPane;
-
 import netscape.javascript.JSObject;
-
-import at.ac.oeaw.acdh.facsviewer.preferencepage.configtabledata.FacsViewerProjectConfig;
-import at.ac.oeaw.acdh.facsviewer.utils.FacsIndexElement;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
  
 public class FacsViewerBrowserPanel extends JFXPanel {
@@ -64,6 +61,7 @@ public class FacsViewerBrowserPanel extends JFXPanel {
     		
 			public void changed(ObservableValue<? extends Worker.State> observable, State oldState, State newState) {
 				 if (newState == State.SUCCEEDED) {
+				window.setMember("projectsConfigs", projectsConfigs);
 				window.setMember("currentProjectConfig", currentProjectConfig);
 	            engine.executeScript("var facsViewerGUIPluginInstance = new facsViewerGUIPlugin(currentProjectConfig)");
 		 
@@ -85,8 +83,6 @@ public class FacsViewerBrowserPanel extends JFXPanel {
     	Platform.runLater( new Runnable() { 
             @Override
             public void run() {
-            	
-            	
 	            window.setMember("currentProjectConfig", currentProjectConfig);
             	engine.executeScript("facsViewerGUIPluginInstance.selectProject(currentProjectConfig)");
             	
@@ -107,8 +103,6 @@ public class FacsViewerBrowserPanel extends JFXPanel {
             @Override
             public void run() {
             
-            	
-            	
             	window.setMember("fcsidx", fim);
 	            engine.executeScript("facsViewerGUIPluginInstance.setFacsIndex(fcsidx)");
             	engine.executeScript("facsViewerGUIPluginInstance.generateDropDown()");

@@ -13,6 +13,5 @@
     </runtime>
 	 <extension type="WorkspaceAccess" 
    class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerExtension"/>
-    <extension type="OptionPage" class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerExtension"/>
     <view id="ACDH Facs Viewer" initialSide="EAST" initialRow="0"/>
 </plugin>

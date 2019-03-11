@@ -12,6 +12,18 @@ body {
 	display:none;
 }
 
+.nav-item {
+	padding:5px;
+	cursor:pointer
+}
+
+#profile {
+	display:none;
+}
+
 #openseadragonContainer {
 	background:black;
 }
+
+
+li.active {background:#59bcc1;color:white;}
