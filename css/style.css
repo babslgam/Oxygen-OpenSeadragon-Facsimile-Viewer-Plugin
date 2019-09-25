@@ -1,0 +1,29 @@
+html,body {
+height:100%;
+font-size:20px;
+}
+
+.tab-content>.tab-pane {
+    display:none;
+}
+
+.tab-content > .active {
+    display:flex;
+    flex-grow:1;
+}
+
+.toolbar {
+    display:none;
+    margin:0;
+}
+
+.pagenavarrows {
+    font-size:1rem;
+}
+
+#openseadragonContainer {
+    background:black;
+}
+
+
+

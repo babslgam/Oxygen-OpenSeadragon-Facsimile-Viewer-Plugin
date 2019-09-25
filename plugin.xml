@@ -5,14 +5,12 @@
  description="Load facsimile of current page"
  version="1.0"
  vendor="Syncro Soft"
- class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerPlugin"
+ class="ro.sync.exml.plugin.Plugin"
  classLoaderType="preferReferencedResources">
-    <runtime>
-    <library name="../classes"/>
-	<library name="target/classes"/>
-    </runtime>
-	 <extension type="WorkspaceAccess" 
-   class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerExtension"/>
-    <extension type="OptionPage" class="at.ac.oeaw.acdh.facsviewer.plugin.FacsViewerExtension"/>
+
+<extension type="WorkspaceAccessJS" href="wsAccess.js"/>
+<extension type="WorkspaceAccessJSModule" href="guiUtils.js"/>
+<extension type="WorkspaceAccessJSModule" href="facsViewerController.js"/>
+<extension type="WorkspaceAccessJSModule" href="pluginController.js"/>
     <view id="ACDH Facs Viewer" initialSide="EAST" initialRow="0"/>
 </plugin>

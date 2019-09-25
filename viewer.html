@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type="text/javascript" src="vendor/openseadragon/openseadragon.min.js"></script>
+    <script type="text/javascript" src="vendor/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="vendor/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <!-- <script type='text/javascript'
+     src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>-->
+    <link type="text/css" rel="stylesheet" href="vendor/bootstrap-4.3.1/css/bootstrap.min.css">
+    </link>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    </link>
+</head>
+
+<body>
+    <div class="h-100 d-flex">
+        <div class="d-flex flex-grow-1 flex-column">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="viewertab-tab" data-toggle="tab" href="#viewer" role="tab"
+                        aria-controls="home" aria-selected="true">Viewer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab"
+                        aria-controls="settings" aria-selected="false">Settings</a>
+                </li>
+            </ul>
+            <!--<div class="tab-content d-flex  flex-grow-1">-->
+            <div class="tab-content d-flex flex-grow-1 flex-column">
+                <div class="tab-pane fade show active flex-column" id="viewer" role="tabpanel"
+                    aria-labelledby="home-tab">
+                    <div class="d-flex flex-grow-1 flex-column">
+                        <div class="form-group">
+                            <label for="elementselector">Ref Element</label>
+                            <select class="form-control" id="elementselector" disabled>
+                                <option disabled>-- Select Element --</option>
+                            </select>
+                        </div>
+                        <div id="toolbarDiv" class="toolbar row mb-1 justify-content-between">
+                                <div class="w-10">
+                                    <span class="align-middle">
+                                    <!-- https://github.com/danklammer/bytesize-icons  -->
+                                    <button id="prevpagebtn" type="button" class="btn btn-sm btn-outline-dark"><svg id="i-chevron-left" class="pagenavarrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                        width="32" height="32" fill="none" stroke="#000" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2">
+                                        <path d="M20 30 L8 16 20 2" />
+                                    </svg></button>
+                                    <span id="currentpagenr"></span> / <span id="totalpagesnr"></span>
+                                    <!-- https://github.com/danklammer/bytesize-icons  -->
+                                    <button id="nextpagebtn" type="button" class="btn btn-sm btn-outline-dark"> <svg id="i-chevron-right" class="pagenavarrows" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"
+                                        width="32" height="32" fill="none" stroke="#000" stroke-linecap="round"
+                                        stroke-linejoin="round" stroke-width="2">
+                                        <path d="M12 30 L24 16 12 2" />
+                                    </svg></button>
+                                </span>
+                                </div>
+                                <div class="w-75">
+                                    <select class="form-control" id="imageselector" disabled></select>
+                                </div>
+                                 <!-- https://github.com/danklammer/bytesize-icons  -->
+                               <!-- <div class="w-15">
+                                 <svg id="i-zoom-in" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <circle cx="14" cy="14" r="12" />
+                                    <path d="M23 23 L30 30" />
+                                    <path d="M14 10 L14 18 M10 14 L18 14" />
+                                </svg>
+                                <svg id="i-zoom-out" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <circle cx="14" cy="14" r="12" />
+                                    <path d="M23 23 L30 30" />
+                                    <path d="M10 14 L18 14" />
+                                </svg>
+                                <svg id="i-zoom-reset" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <circle cx="14" cy="14" r="12" />
+                                    <path d="M23 23 L30 30" />
+                                    <path d="M9 12 L9 9 12 9 M16 9 L19 9 19 12 M9 16 L9 19 12 19 M19 16 L19 19 16 19" />
+                                </svg>
+                          
+                            </div>-->
+                        </div>
+                        <div id="openseadragonContainer" class="d-flex flex-grow-1"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="settings-tab">
+                    <div class="flex-column">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="chooseProjectSettingsRadio" name="settingsRadio"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="chooseProjectSettingsRadio">Use settings for
+                                current project</label>
+                        </div>
+                        <div id="debug"></div>
+                        <div class="form-group">
+                            <select class="form-control" id="settingselementselector">
+                                <option disabled>-- Select Element --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="refelementinput">Ref Element</label>
+                                <input class="form-control" id="refelementinput" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="refattributeinput">Ref Attribute</label>
+                            <input class="form-control" id="refattributeinput" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="imageserverinput">Image Server</label>
+                            <input class="form-control" id="imageserverinput" type="text"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="localimagefolderinput">Local Image Folder</label>
+                            <input class="form-control" id="localimagefolderinput" type="text"/>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="chooseFileSettingsRadio" name="settingsRadio"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="chooseFileSettingsRadio">Use settings for current
+                                file</label>
+                        </div>
+                        <table id="singleFileSettingsTable" class="table"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+</body>
+
+</html>
